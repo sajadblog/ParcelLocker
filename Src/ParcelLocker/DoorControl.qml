@@ -8,7 +8,7 @@ Item {
     property string lockerId : ""
     readonly property int retryCount : 3
     property int retryNumber: 0
-    property bool isLastOrderOpen : false
+    property bool isDoorOpen : false
 
     signal goWelcome()
     signal doorOpened()
@@ -35,16 +35,16 @@ Item {
                 logger.newLog("Wrong LockerID: current ->" + root.lockerId + "received ID ->" + lockerId)
                 return;
             }
-            if(root.isLastOrderOpen != isOpen){
-                logger.newLog("Wrong locker command: current ->" + root.isLastOrderOpen + "received ID ->" + isOpen)
+            if(root.isDoorOpen == isOpen){
+                logger.newLog("Wrong locker command: current ->" + root.isDoorOpen + "received ID ->" + isOpen)
                 return;
             }
 
             if(success){
-                if(root.isLastOrderOpen)
-                    root.doorOpened()
-                else
+                if(root.isDoorOpen)
                     root.doorClosed()
+                else
+                    root.doorOpened()
             }else{
                 messageText.text = qsTr("Rejected, Please try again")
                 logger.newLog("request rejected")
@@ -73,10 +73,10 @@ Item {
             {
                 logger.newLog("Command timeout number: " + retryNumber +", retry to send command")
 
-                if(root.isLastOrderOpen)
-                    doorController.open(lockerId)
-                else
+                if(root.isDoorOpen)
                     doorController.close(lockerId)
+                else
+                    doorController.open(lockerId)
                 retryNumber++
                 return
             }
@@ -94,7 +94,7 @@ Item {
         spacing: appearanceManager.itemSpacing
         Text{
             id : textItem
-            text : qsTr("Your Parcel is in Locker " + lockerId)
+            text : qsTr("Your Parcel is in Locker " + lockerId + " : " + (root.isDoorOpen ? qsTr("is open") : qsTr("is close")))
             font.pixelSize: appearanceManager.fontMediumPixelSize
         }
         Text{
@@ -105,7 +105,6 @@ Item {
             font.bold: true
         }
         Button{
-            id : openButton
             text : qsTr("Open")
             height : appearanceManager.iconBigSize
             width : parent.width
@@ -113,23 +112,8 @@ Item {
             opacity : enabled ? 1.0 : 0.5
             onClicked : {
                 resetValues()
-                root.isLastOrderOpen = true
                 doorController.open(lockerId)
-                logger.newLog("Open command sent")
-            }
-        }
-        Button{
-            id : closeButton
-            text : qsTr("Close")
-            height : appearanceManager.iconBigSize
-            width : parent.width
-            enabled : !orderTimeoutTimer.running
-            opacity : enabled ? 1.0 : 0.5
-            onClicked : {
-                resetValues()
-                root.isLastOrderOpen = false
-                doorController.close(lockerId)
-                logger.newLog("Close command sent")
+                logger.newLog( isDoorOpen ? "Close command sent" :"Open command sent")
             }
         }
         Button{
