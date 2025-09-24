@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>CodeEntry.qml</file>
-        <file>DoorControl.qml</file>
-        <file>Result.qml</file>
-        <file>Validating.qml</file>
-        <file>Welcome.qml</file>
-        <file>Header.qml</file>
+        <file>qmls/CodeEntry.qml</file>
+        <file>qmls/DoorControl.qml</file>
+        <file>qmls/Header.qml</file>
+        <file>qmls/main.qml</file>
+        <file>qmls/Result.qml</file>
+        <file>qmls/Validating.qml</file>
+        <file>qmls/Welcome.qml</file>
     </qresource>
 </RCC>
