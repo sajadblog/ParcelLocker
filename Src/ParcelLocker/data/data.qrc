@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>mock_api.json</file>
+    </qresource>
+</RCC>

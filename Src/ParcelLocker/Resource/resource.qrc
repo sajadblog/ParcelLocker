@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Background.jpg</file>
+        <file>NoWifi_48.png</file>
+    </qresource>
+</RCC>

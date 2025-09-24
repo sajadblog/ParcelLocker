@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>CodeEntry.qml</file>
+        <file>DoorControl.qml</file>
+        <file>Result.qml</file>
+        <file>Validating.qml</file>
+        <file>Welcome.qml</file>
+        <file>Header.qml</file>
+    </qresource>
+</RCC>

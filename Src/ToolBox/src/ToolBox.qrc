@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/qt/qml/ToolBox">
+        <file>Button.qml</file>
+        <file>qmldir</file>
+        <file>ColorizeImage.qml</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,6 @@
+{
+  "codes": [
+    {"pin": "123456", "lockerId": "A-12", "items": ["BOX-001"]},
+    {"pin": "777777", "lockerId": "B-03", "items": ["ENV-544"]}
+  ]
+}
