@@ -8,7 +8,7 @@ Item {
     property string lockerId : ""
     readonly property int retryCount : 3
     property int retryNumber: 0
-    property bool isDoorOpen : false
+    property bool isDoorOpen : doorController.isDoorOpen(lockerId)
 
     signal goWelcome()
     signal doorOpened()
@@ -41,10 +41,10 @@ Item {
             }
 
             if(success){
-                if(root.isDoorOpen)
-                    root.doorClosed()
-                else
+                if(isOpen)
                     root.doorOpened()
+                else
+                    root.doorClosed()
             }else{
                 messageText.text = qsTr("Rejected, Please try again")
                 logger.newLog("request rejected")
@@ -94,7 +94,7 @@ Item {
         spacing: appearanceManager.itemSpacing
         Text{
             id : textItem
-            text : qsTr("Your Parcel is in Locker " + lockerId + " : " + (root.isDoorOpen ? qsTr("is open") : qsTr("is close")))
+            text : qsTr("Your Parcel is in Locker " + lockerId + " : " + (root.isDoorOpen ? qsTr("is open") : qsTr("is closed")))
             font.pixelSize: appearanceManager.fontMediumPixelSize
         }
         Text{
@@ -105,14 +105,17 @@ Item {
             font.bold: true
         }
         Button{
-            text : qsTr("Open")
+            text : root.isDoorOpen ? qsTr("Close") : qsTr("Open")
             height : appearanceManager.iconBigSize
             width : parent.width
             enabled : !orderTimeoutTimer.running // TODO : there should be a better busy waiting indicator
             opacity : enabled ? 1.0 : 0.5
             onClicked : {
                 resetValues()
-                doorController.open(lockerId)
+                if(!root.isDoorOpen)
+                    doorController.open(lockerId)
+                else
+                    doorController.close(lockerId)
                 logger.newLog( isDoorOpen ? "Close command sent" :"Open command sent")
             }
         }

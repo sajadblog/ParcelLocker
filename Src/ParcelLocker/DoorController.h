@@ -13,6 +13,7 @@ public:
 
     Q_INVOKABLE void open(QString lockerID);
     Q_INVOKABLE void close(QString lockerID);
+    Q_INVOKABLE bool isDoorOpen(QString lockerID);
 
 signals:
     void statusChanged(QString lockerId, bool isOpen, bool success);

@@ -27,6 +27,11 @@ void DoorController::close(QString lockerId)
     });
 }
 
+bool DoorController::isDoorOpen(QString lockerID)
+{
+    return static_cast<int>(QRandomGenerator::global()->bounded(2)) % 2 == 0 ;
+}
+
 void DoorController::lazyOpen(QString lockerID)
 {
     int delay = QRandomGenerator::global()->bounded(100, 5000);
