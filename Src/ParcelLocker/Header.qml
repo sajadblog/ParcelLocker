@@ -38,7 +38,7 @@ Item{
             height : parent.height
             anchors.right: darkModeButton.left
             anchors.rightMargin: appearanceManager.itemSpacing
-            text: mainController.isEnglish ? qsTr("English") : qsTr("Portuguese")
+            text: mainController.isEnglish ? qsTr("Portuguese") : qsTr("English")
             onClicked : mainController.isEnglish = !mainController.isEnglish
         }
         Button{
