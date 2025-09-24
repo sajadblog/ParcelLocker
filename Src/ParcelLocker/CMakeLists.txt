@@ -14,21 +14,14 @@ project("${PROJECT_NAME}"
 )
 
 list(APPEND LIBS
+    BackEnd
     ToolBox
 )
 
 include(${${PARAM_PROJECT_NAME}_CMAKE_DIR}/Utility.cmake)
 include(${${PARAM_PROJECT_NAME}_CMAKE_DIR}/Component.cmake)
 
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-
-add_executable(${PROJECT_NAME}
-    DoorController.h DoorController.cpp
-    Logger.h Logger.cpp)
-
-target_link_libraries(ParcelLocker PRIVATE Qt6::Core)
-target_link_libraries(ParcelLocker PRIVATE Qt6::Core)
+add_executable(${PROJECT_NAME})
 
 AutoComponentGenerator(${PROJECT_NAME} "${LIBS}" ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} "")
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

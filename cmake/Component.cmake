@@ -9,12 +9,10 @@ function(DiscoverSourceFiles SRC_DIR HDR_DIR FULL_LIST)
     file(GLOB_RECURSE SOURCES   ${SRC_DIR}/*.cpp)
     file(GLOB_RECURSE UIS       ${SRC_DIR}/*.ui)
     file(GLOB_RECURSE QT_RESOURCES ${SRC_DIR}/*.qrc)
-    file(GLOB_RECURSE RESOURCES ${SRC_DIR}/*.rc)
 
     list(APPEND SOURCES "${HEADERS}")
     list(APPEND SOURCES "${UIS}")
     list(APPEND SOURCES "${QT_RESOURCES}")
-    list(APPEND SOURCES "${RESOURCES}")
     set(FULL_LIST "${SOURCES}" PARENT_SCOPE)
 endfunction()
 

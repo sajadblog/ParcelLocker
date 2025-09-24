@@ -1,4 +1,5 @@
 import QtQuick
+import QtTest 1.0
 import ToolBox 1.0
 
 Item {
@@ -142,4 +143,16 @@ Item {
         retryNumber = 0;
         messageText.text = ""
     }
+    TestCase {
+        name: "MathTests"
+
+        function test_math() {
+            compare(2 + 2, 4, "2 + 2 = 4")
+        }
+
+        function test_fail() {
+            compare(2 + 2, 5, "2 + 2 = 5")
+        }
+    }
+
 }

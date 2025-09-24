@@ -6,13 +6,14 @@ project("${PROJECT_NAME}"
         HOMEPAGE_URL "https://github.com/gls-nxt/technical-assessments/blob/main/assessments/hmi-software-engineer.md"
         LANGUAGES CXX)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick Qml)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick Qml QuickTest)
 
 list(APPEND LIBS
     Qt6::Core
     Qt6::Gui
     Qt6::Quick
     Qt6::Qml
+    Qt6::QuickTest
     )
 
 add_library(${PROJECT_NAME} STATIC)
