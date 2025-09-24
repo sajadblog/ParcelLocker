@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
+project("Root")
 
 set(PARAM_PROJECT_NAME "ParcelLockerSolution")
 set(CMAKE_CXX_STANDARD "20")

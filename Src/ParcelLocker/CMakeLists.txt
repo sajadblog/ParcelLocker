@@ -1,6 +1,5 @@
 set(PROJECT_NAME                    "ParcelLocker")
 set(${PROJECT_NAME}_SUMMARY         "Parcel Locker Mini-Kiosk")
-set(${PROJECT_NAME}_VENDOR_NAME     "GLS-NXT")
 set(${PROJECT_NAME}_VENDOR_CONTACT  "https://github.com/gls-nxt/technical-assessments/blob/main/assessments/hmi-software-engineer.md")
 set(${PROJECT_NAME}_VERSION_MAJOR   1)
 set(${PROJECT_NAME}_VERSION_MINOR   0)
@@ -34,4 +33,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 )
 
 
-# TranslationGenerator(${PROJECT_NAME} "en;pr" "${FULL_LIST}" ON)
+TranslationGenerator(${PROJECT_NAME} "pt" "" ON)
+
