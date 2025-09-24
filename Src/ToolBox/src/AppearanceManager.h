@@ -5,7 +5,7 @@
 #include <QQmlContext>
 #include <QFont>
 
-#define appearanceManager (HAppearanceManager::instance())
+#define appearanceManager (AppearanceManager::instance())
 class AppearanceManager : public QObject {
     Q_OBJECT
 
@@ -103,6 +103,10 @@ signals:
 
 private:
     explicit AppearanceManager(QObject* parent = nullptr);
+    AppearanceManager(AppearanceManager const&)   = delete;
+    void operator=(AppearanceManager const&)           = delete;
+    AppearanceManager(AppearanceManager &&)       = delete;
+    void operator=(AppearanceManager &&)               = delete;
 
     //Theme
     bool m_isDark{false};

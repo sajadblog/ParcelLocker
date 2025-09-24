@@ -5,6 +5,7 @@
 #include <QQmlContext>
 #include <QRandomGenerator>
 #include <QThreadPool>
+#include "Logger.h"
 
 MainController::MainController(QObject *parent)
     : QObject{parent}
@@ -25,6 +26,9 @@ void MainController::registerYourself(QQmlContext *context)
 
 void MainController::checkPinNumber(int pinNumber)
 {
+    if(!m_isConnected) // INFO : Ignore the request
+        return;
+
     QThreadPool::globalInstance()->start([this,pinNumber](){
         lazyCheckPinNumber(pinNumber);
     });
@@ -53,6 +57,8 @@ void MainController::setIsConnected(bool newIsConnected)
     if (m_isConnected == newIsConnected)
         return;
     m_isConnected = newIsConnected;
+    logger->newLog(QString("Connection changed %0").arg(newIsConnected));
+
     emit isConnectedChanged();
 }
 

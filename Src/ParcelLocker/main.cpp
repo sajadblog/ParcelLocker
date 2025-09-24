@@ -18,18 +18,16 @@ int main(int argc, char *argv[])
     const QStringList args = parser.positionalArguments();
     bool showFullscreen = parser.isSet(fullscreenOption);
 
-
     QQmlApplicationEngine engine ;
 
     Q_INIT_RESOURCE(ToolBox);
     AppearanceManager::instance()->registerYourself(engine.rootContext());
-    MainController mainController;
-    mainController.registerYourself(engine.rootContext());
-    mainController.setIsFullScreen(showFullscreen);
-    DoorController doorController;
+    auto mainController = std::make_shared<MainController>();
+    mainController->registerYourself(engine.rootContext());
+    mainController->setIsFullScreen(showFullscreen);
+    DoorController doorController(mainController);
     doorController.registerYourself(engine.rootContext());
-    Logger logger;
-    logger.registerYourself(engine.rootContext());
+    logger->registerYourself(engine.rootContext());
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

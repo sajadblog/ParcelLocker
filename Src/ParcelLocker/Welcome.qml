@@ -19,23 +19,14 @@ Item {
         Text{
             id : welcomItem
             text : qsTr("Welcome")
-            visible : mainController.isConnected
             font.pixelSize: appearanceManager.fontLargePixelSize
         }
         Button{
             id : startButton
             text : qsTr("Start")
-            visible : mainController.isConnected
             height : appearanceManager.iconBigSize
             anchors.horizontalCenter: welcomItem.horizontalCenter
             onClicked : root.startClicked()
         }
-    }
-    Text{
-        id : outOfSeviceItem
-        text : qsTr("Out of service")
-        anchors.centerIn: parent
-        visible : !mainController.isConnected
-        font.pixelSize: appearanceManager.fontLargePixelSize
     }
 }

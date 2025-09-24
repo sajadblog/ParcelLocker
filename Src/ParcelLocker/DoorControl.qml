@@ -111,6 +111,13 @@ Item {
             enabled : !orderTimeoutTimer.running // TODO : there should be a better busy waiting indicator
             opacity : enabled ? 1.0 : 0.5
             onClicked : {
+                if(!mainController.isConnected)
+                {
+                    logger.newLog( "Connections lost : open/close command")
+                    messageText.text = qsTr("Connections lost, Please try later")
+                    return
+                }
+
                 resetValues()
                 if(!root.isDoorOpen)
                     doorController.open(lockerId)

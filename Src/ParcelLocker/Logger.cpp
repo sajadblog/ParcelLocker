@@ -15,6 +15,12 @@ Logger::~Logger()
     writeTofile();
 }
 
+Logger *Logger::instance()
+{
+    static Logger inst;
+    return &inst;
+}
+
 void Logger::registerYourself(QQmlContext *context)
 {
     context->setContextProperty("logger", this);

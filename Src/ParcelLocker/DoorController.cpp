@@ -1,11 +1,13 @@
 #include "DoorController.h"
 
+#include "MainController.h"
+
 #include <QQmlContext>
 #include <QRandomGenerator>
 #include <QThreadPool>
 
-DoorController::DoorController(QObject *parent)
-    : QObject{parent}
+DoorController::DoorController(std::shared_ptr<MainController> mainControllerPtr, QObject *parent)
+    : QObject{parent}, m_mainControllerPtr(mainControllerPtr)
 {}
 
 void DoorController::registerYourself(QQmlContext *context)
@@ -15,6 +17,8 @@ void DoorController::registerYourself(QQmlContext *context)
 
 void DoorController::open(QString lockerId)
 {
+    if(m_mainControllerPtr == nullptr ||! m_mainControllerPtr->isConnected()) // INFO : Ignore the request
+        return;
     QThreadPool::globalInstance()->start([this,lockerId](){
         lazyOpen(lockerId);
     });
@@ -22,6 +26,9 @@ void DoorController::open(QString lockerId)
 
 void DoorController::close(QString lockerId)
 {
+    if(m_mainControllerPtr == nullptr ||! m_mainControllerPtr->isConnected()) // INFO : Ignore the request
+        return;
+
     QThreadPool::globalInstance()->start([this,lockerId](){
         lazyClose(lockerId);
     });

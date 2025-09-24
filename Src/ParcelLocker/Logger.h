@@ -6,13 +6,14 @@
 #include <QTimer>
 
 class QQmlContext;
+#define logger (Logger::instance())
+
 class Logger : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString kioskId READ kioskId WRITE setkioskId NOTIFY kioskIdChanged FINAL)
 public:
-    explicit Logger(QObject *parent = nullptr);
-    ~Logger();
+    static Logger* instance();
     void registerYourself(QQmlContext* context);
 
     Q_INVOKABLE void newLog(QString message, int level = 0);
@@ -25,6 +26,13 @@ signals:
     void kioskIdChanged();
 
 private :
+    explicit Logger(QObject *parent = nullptr);
+    ~Logger();
+    Logger(Logger const&)   = delete;
+    void operator=(Logger const&)           = delete;
+    Logger(Logger &&)       = delete;
+    void operator=(Logger &&)               = delete;
+
     QString m_kioskId{"tempID"};
     QStringList m_cachedMessages{};
     QTimer m_writeTimer;

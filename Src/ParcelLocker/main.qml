@@ -135,12 +135,6 @@ Window {
                     logger.newLog("Go Welcome")
                 }
             }
-            Connections{
-                target: mainController
-                function onIsConnectedChanged(){
-                    content.state = welcome.title
-                }
-            }
 
             states: [
                 State {

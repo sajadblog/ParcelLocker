@@ -3,12 +3,13 @@
 
 #include <QObject>
 
+class MainController;
 class QQmlContext;
 class DoorController : public QObject
 {
     Q_OBJECT
 public:
-    explicit DoorController(QObject *parent = nullptr);
+    explicit DoorController(std::shared_ptr<MainController> mainControllerPtr, QObject *parent = nullptr);
     void registerYourself(QQmlContext* context);
 
     Q_INVOKABLE void open(QString lockerID);
@@ -21,6 +22,8 @@ signals:
 private :
     Q_INVOKABLE void lazyOpen(QString lockerID);
     Q_INVOKABLE void lazyClose(QString lockerID);
+
+    std::shared_ptr<MainController> m_mainControllerPtr;
 };
 
 #endif // DOORCONTROLLER_H

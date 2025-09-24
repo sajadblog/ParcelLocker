@@ -134,7 +134,6 @@ Item {
             id : messageText
             color : "red"
             anchors.horizontalCenter: parent.horizontalCenter
-            visible : false
             font.bold: true
             font.pixelSize: appearanceManager.fontMediumPixelSize
         }
@@ -157,6 +156,12 @@ Item {
             }
             }
             onClicked: {
+                if(!mainController.isConnected)
+                {
+                    logger.newLog( "Connections lost : pin validation command")
+                    messageText.text = qsTr("Connections lost, Please try later")
+                    return
+                }
                 timeoutTimer.restart()
 
                 var str = ""
@@ -165,7 +170,6 @@ Item {
                     if (child) {
                         if(child.value == "")
                         {
-                            messageText.visible = true
                             messageText.text = qsTr("Pin code must has 6 digits")
                             return
                         }
@@ -178,7 +182,6 @@ Item {
     }
     function showMessage(message)
     {
-        messageText.visible = true
         messageText.text = message
     }
 }
