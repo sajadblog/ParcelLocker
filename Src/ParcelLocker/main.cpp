@@ -25,6 +25,9 @@ int main(int argc, char *argv[])
     auto mainController = std::make_shared<MainController>();
     mainController->registerYourself(engine.rootContext());
     mainController->setIsFullScreen(showFullscreen);
+    QObject::connect(mainController.get(), &MainController::isEnglishChanged,mainController.get(),[&](){
+        engine.retranslate();
+    });
     DoorController doorController(mainController);
     doorController.registerYourself(engine.rootContext());
     logger->registerYourself(engine.rootContext());

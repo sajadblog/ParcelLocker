@@ -4,7 +4,7 @@ import ToolBox 1.0
 Item {
     id: root
 
-    property alias title : welcomItem.text
+    property string title : "Welcome"
     signal startClicked()
 
     width: window.width / 3

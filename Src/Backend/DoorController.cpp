@@ -36,7 +36,7 @@ bool DoorController::close(QString lockerId)
     return true;
 }
 
-bool DoorController::isDoorOpen(QString lockerID)
+bool DoorController::isDoorOpen(QString )
 {
     return static_cast<int>(QRandomGenerator::global()->bounded(2)) % 2 == 0 ;
 }

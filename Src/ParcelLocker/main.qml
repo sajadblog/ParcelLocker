@@ -52,6 +52,7 @@ Window {
             height : window.height / 15
         }
 
+
         Item{
             id : content
             y : header.height

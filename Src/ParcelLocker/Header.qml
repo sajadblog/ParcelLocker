@@ -35,6 +35,14 @@ Item{
         }
         Button{
             height : parent.height
+            anchors.right: darkModeButton.left
+            anchors.rightMargin: appearanceManager.itemSpacing
+            text: mainController.isEnglish ? qsTr("English") : qsTr("Portuguese")
+            onClicked : mainController.isEnglish = !mainController.isEnglish
+        }
+        Button{
+            id: darkModeButton
+            height : parent.height
             anchors.right: parent.right
             text: appearanceManager.isDark ? qsTr("Light Mode") : qsTr("Dark Mode")
             onClicked : appearanceManager.isDark = !appearanceManager.isDark

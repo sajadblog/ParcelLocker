@@ -5,6 +5,8 @@
 #include <QQmlContext>
 #include <QRandomGenerator>
 #include <QThreadPool>
+#include <QTranslator>
+#include <QGuiApplication>
 #include "Logger.h"
 
 MainController::MainController(QObject *parent)
@@ -44,6 +46,17 @@ void MainController::setIsEnglish(bool newIsEnglish)
     if (m_isEnglish == newIsEnglish)
         return;
     m_isEnglish = newIsEnglish;
+
+    static QTranslator ptTranslator;
+    if(newIsEnglish)
+    {
+        qApp->removeTranslator(&ptTranslator);
+    }else{
+        if(ptTranslator.load(":/translation/ParcelLocker_pt.qm")){
+            qApp->installTranslator(&ptTranslator);
+        }
+    }
+
     emit isEnglishChanged();
 }
 
