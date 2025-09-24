@@ -18,10 +18,9 @@ function(AutoComponentGenerator COMPONENT LIBS SRC_DIR HDR_DIR)
     DiscoverSourceFiles(${SRC_DIR} ${HDR_DIR} FULL_LIST)
     target_sources(${COMPONENT} PRIVATE ${FULL_LIST})
     target_link_libraries(${COMPONENT} PUBLIC ${LIBS})
-
 endfunction()
 
-function(TranslationGenerator COMPONENT LANGUAGES ADDITIONAL_SOURCE COPY_INTO_SOURCE)
+function(TranslationGenerator COMPONENT LANGUAGES )
     set( TS )
     set( QM )
     set (TRANSLATION_DIR "${CMAKE_CURRENT_SOURCE_DIR}/translations")
@@ -32,14 +31,5 @@ function(TranslationGenerator COMPONENT LANGUAGES ADDITIONAL_SOURCE COPY_INTO_SO
 
     find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
     qt6_add_translations(${COMPONENT} TS_FILES ${TS}
-        QM_FILES_OUTPUT_VARIABLE qm_files
-        SOURCES "${ADDITIONAL_SOURCE}")
-
-    # if(COPY_INTO_SOURCE)
-    #     add_custom_command(TARGET ${COMPONENT}_lrelease
-    #         POST_BUILD
-    #         COMMAND ${CMAKE_COMMAND} -E copy ${qm_files} ${TRANSLATION_DIR}
-    #         COMMENT "Move generate QM files to translation directory"
-    #         VERBATIM)
-    # endif()
+        QM_FILES_OUTPUT_VARIABLE qm_files)
 endfunction()

@@ -4,8 +4,8 @@ import ToolBox 1.0
 
 Window {
     id: window
-    width: 800
-    height: 450
+    width: 1000
+    height: 700
     visible: true
     title: qsTr("Parcel Locker")
     visibility: mainController.isFullScreen ? Window.FullScreen : Window.Windowed

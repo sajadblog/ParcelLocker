@@ -1,10 +1,4 @@
-set(PROJECT_NAME                  "ToolBox")
-
-project("${PROJECT_NAME}"
-        VERSION "1.0.0"
-        DESCRIPTION "Parcel Locker Mini-Kiosk"
-        HOMEPAGE_URL "https://github.com/gls-nxt/technical-assessments/blob/main/assessments/hmi-software-engineer.md"
-        LANGUAGES CXX)
+project(ToolBox)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick Qml QuickTest)
 

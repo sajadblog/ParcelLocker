@@ -35,6 +35,6 @@ private :
     std::shared_ptr<DoorController> doorController ;
 };
 
-QUICK_TEST_MAIN_WITH_SETUP(mytest, Setup)
+QUICK_TEST_MAIN_WITH_SETUP(testCases, Setup)
 
 #include "tst_main.moc"

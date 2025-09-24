@@ -2,8 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <AppearanceManager.h>
 #include <QCommandLineParser>
-#include "MainController.h"
-#include "DoorController.h"
+#include <MainController.h>
+#include <DoorController.h>
 #include "Logger.h"
 
 int main(int argc, char *argv[])
@@ -21,13 +21,16 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine ;
 
     Q_INIT_RESOURCE(ToolBox);
+
     AppearanceManager::instance()->registerYourself(engine.rootContext());
+
     auto mainController = std::make_shared<MainController>();
     mainController->registerYourself(engine.rootContext());
     mainController->setIsFullScreen(showFullscreen);
     QObject::connect(mainController.get(), &MainController::isEnglishChanged,mainController.get(),[&](){
         engine.retranslate();
     });
+
     DoorController doorController(mainController);
     doorController.registerYourself(engine.rootContext());
     logger->registerYourself(engine.rootContext());

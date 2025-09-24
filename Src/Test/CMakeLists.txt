@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.2)
-
 project(tst_main LANGUAGES CXX)
 
 enable_testing()
@@ -10,11 +8,11 @@ add_definitions(-DQUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 
 qt_standard_project_setup(REQUIRES 6.6)
 
-add_executable(tst_main tst_main.cpp)
+add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
 
-add_test(NAME tst_main COMMAND tst_main)
+add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
 
-target_link_libraries(tst_main
+target_link_libraries(${PROJECT_NAME}
     PRIVATE
     BackEnd
     Qt6::QuickTest

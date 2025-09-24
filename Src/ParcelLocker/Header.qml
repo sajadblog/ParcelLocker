@@ -29,6 +29,7 @@ Item{
             }
         }
         Rectangle{
+            id: noWifiRectangle
             anchors.fill: connectionImage
             opacity : 0.5
             visible: mouseArea.containsMouse

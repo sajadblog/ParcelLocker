@@ -1,7 +1,5 @@
 #include "AppearanceManager.h"
 
-#include <QFile>
-
 AppearanceManager::AppearanceManager(QObject* parent)
     : QObject(parent)
 {

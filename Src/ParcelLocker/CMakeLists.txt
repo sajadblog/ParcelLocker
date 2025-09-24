@@ -17,7 +17,6 @@ list(APPEND LIBS
     ToolBox
 )
 
-include(${${PARAM_PROJECT_NAME}_CMAKE_DIR}/Utility.cmake)
 include(${${PARAM_PROJECT_NAME}_CMAKE_DIR}/Component.cmake)
 
 add_executable(${PROJECT_NAME})
@@ -32,6 +31,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
         AUTORCC ON
 )
 
-
-TranslationGenerator(${PROJECT_NAME} "pt" "" ON)
+TranslationGenerator(${PROJECT_NAME} "pt")
 
